@@ -28,7 +28,12 @@
       "plugin:vue/essential",
       "@vue/standard"
     ],
-    "rules": {},
+    "rules": {
+      "indent": "off",
+      "space-before-function-paren": "off",
+      "quotes": "off",
+      "comma-dangle": "off"
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }
