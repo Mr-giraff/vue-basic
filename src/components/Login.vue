@@ -37,7 +37,7 @@ export default {
             axios.get('/users.json')
                 .then(res => {
                     console.log(res)
-                    const data = Object.values(res.data).find(item => item.email === this.email);
+                    const data = Object.values(res.data).find(item => item.email === this.email)
                     if (data) {
                         data.password === this.password ? this.$router.push({name: 'homeLink'}) : console.log('密码不正确')
                     } else {

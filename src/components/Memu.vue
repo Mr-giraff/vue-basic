@@ -61,6 +61,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     name: "Memu",
     data() {
@@ -117,7 +119,6 @@ export default {
         total() {
             let total = 0
             this.baskets.forEach(item => {
-                console.log(item)
                 total += item.price
             })
             return total
@@ -158,6 +159,19 @@ export default {
         removeFormBaskets(item) {
             this.baskets.splice(this.baskets.indexOf(item), 1)
         }
+    },
+    created() {
+        axios.get('/menu.json')
+            .then(res => {
+                Object.keys(res.data).forEach(item => {
+                    const data = res.data[item]
+                    data.id = item
+                    data.options && data.options.forEach(option => {
+                        option.price = option.price ? option.price * 1 : 0
+                    })
+                })
+                this.menuItems = res.data
+            })
     }
 }
 </script>
