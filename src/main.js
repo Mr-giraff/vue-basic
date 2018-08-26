@@ -11,9 +11,10 @@ axios.defaults.baseURL = 'https://wd2047331563ykfoaw.wilddogio.com/'
 // axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 // 配置Vue原型(在任何组件中都可以正常使用axios，用法:this.http===axios)
-Vue.prototype.http = axios;
+Vue.prototype.http = axios
+
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+    router,
+    store,
+    render: h => h(App)
 }).$mount('#app')

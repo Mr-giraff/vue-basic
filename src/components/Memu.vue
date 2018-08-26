@@ -69,50 +69,7 @@ export default {
         return {
             baskets: [],
             basketText: '购物车缺货',
-            menuItems: [
-                {
-                    name: '榴莲pizza',
-                    description: '',
-                    options: [
-                        {
-                            size: '9',
-                            price: 38,
-                        },
-                        {
-                            size: '11',
-                            price: 58,
-                        },
-                    ]
-                },
-                {
-                    name: '火龙果pizza',
-                    description: '',
-                    options: [
-                        {
-                            size: '9',
-                            price: 38,
-                        },
-                        {
-                            size: '11',
-                            price: 58,
-                        },
-                    ]
-                },
-                {
-                    name: '抹茶pizza',
-                    description: '',
-                    options: [
-                        {
-                            size: '9',
-                            price: 38,
-                        },
-                        {
-                            size: '11',
-                            price: 58,
-                        },
-                    ]
-                },
-            ]
+            menuItems: [],
         }
     },
     computed: {
