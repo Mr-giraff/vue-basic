@@ -117,12 +117,10 @@ export default {
             this.baskets.splice(this.baskets.indexOf(item), 1)
         }
     },
-    // created() {
-    //     this.http.get('/menu.json')
-    //         .then(res => {
-    //             this.$store.commit('setMenuItems', res.data)
-    //         })
-    // }
+    created() {
+        this.http.get('/menu.json')
+            .then(res => this.$store.commit('setMenuItems', res.data))
+    }
 }
 </script>
 

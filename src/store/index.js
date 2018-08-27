@@ -7,6 +7,8 @@ export default new Vuex.Store({
     state: {
         // 设置属性
         menuItems: [],
+        currentUser: null,
+        isLogin: false,
     },
     getters: {
         // 获取属性的状态
@@ -29,9 +31,21 @@ export default new Vuex.Store({
         },
         addMenuItem(state, data) {
             state.menuItems.push(data)
+        },
+        setUser(state, data) {
+            if (data) {
+                state.currentUser = data
+                state.isLogin = true
+            } else {
+                state.currentUser = null
+                state.isLogin = false
+            }
         }
     },
     actions: {
         // 应用mutation
+        setUser({commit}, data) {
+            commit('setUser', data)
+        }
     },
 })

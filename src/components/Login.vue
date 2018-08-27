@@ -32,6 +32,10 @@ export default {
             password: '',
         }
     },
+    // 组件内守卫
+    beforeRouteEnter(to, from, next) {
+        next(vm => vm.$store.dispatch('setUser', null))
+    },
     methods: {
         onSubmit() {
             axios.get('/users.json')
@@ -39,7 +43,12 @@ export default {
                     console.log(res)
                     const data = Object.values(res.data).find(item => item.email === this.email)
                     if (data) {
-                        data.password === this.password ? this.$router.push({name: 'homeLink'}) : console.log('密码不正确')
+                        if (data.password === this.password) {
+                            this.$store.dispatch('setUser', data.email)
+                            this.$router.push({name: 'homeLink'})
+                        } else {
+                            console.log('密码不正确')
+                        }
                     } else {
                         console.log('账号不存在')
                     }

@@ -45,10 +45,9 @@ export default {
     },
     methods: {
         deleteData(item) {
-            // this.menuItems.splice(this.menuItems.indexOf(item), 1)
             axios.delete(`/menu/${item.id}.json`)
                 .then(res => console.log(res))
-                .then(res => this.$store.commit('removeMenuItem', item))
+                .then(() => this.$store.commit('removeMenuItem', item))
                 .catch(error => console.log(error))
         }
     },
@@ -57,9 +56,7 @@ export default {
     },
     created() {
         this.http.get('/menu.json')
-            .then(res => {
-                this.$store.commit('setMenuItems', res.data)
-            })
+            .then(res => this.$store.commit('setMenuItems', res.data))
     }
 }
 </script>
