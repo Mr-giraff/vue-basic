@@ -82,7 +82,8 @@ export default {
             //     // .then(res => this.$router.push({name: 'menuLink'}))
             //     .catch(error => console.log(error))
             axios.post('/menu.json', formData)
-                .then(res => this.$router.push({name: 'menuLink'}))
+                .then(() => this.$store.commit('addMenuItem', formData))
+                // .then(res => this.$router.push({name: 'menuLink'}))
                 .catch(error => console.log(error))
         }
     }

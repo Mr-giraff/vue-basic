@@ -30,19 +30,25 @@
 <script>
 import axios from 'axios'
 import newPizza from './newPizza'
+
 export default {
     name: "Admin",
     data() {
         return {
             name: 'tzj',
-            menuItems: [],
+        }
+    },
+    computed: {
+        menuItems() {
+            return this.$store.state.menuItems
         }
     },
     methods: {
         deleteData(item) {
-            this.menuItems.splice(this.menuItems.indexOf(item),1)
+            // this.menuItems.splice(this.menuItems.indexOf(item), 1)
             axios.delete(`/menu/${item.id}.json`)
                 .then(res => console.log(res))
+                .then(res => this.$store.commit('removeMenuItem', item))
                 .catch(error => console.log(error))
         }
     },
@@ -50,11 +56,9 @@ export default {
         newPizza,
     },
     created() {
-        axios.get('/menu.json')
+        this.http.get('/menu.json')
             .then(res => {
-                Object.keys(res.data).forEach(item => res.data[item].id = item)
-                this.menuItems = Object.values(res.data)
-                console.log(this.menuItems)
+                this.$store.commit('setMenuItems', res.data)
             })
     }
 }

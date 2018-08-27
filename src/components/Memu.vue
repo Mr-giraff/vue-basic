@@ -61,18 +61,18 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
     name: "Memu",
     data() {
         return {
             baskets: [],
             basketText: '购物车缺货',
-            menuItems: [],
         }
     },
     computed: {
+        menuItems() {
+            return this.$store.state.menuItems
+        },
         total() {
             let total = 0
             this.baskets.forEach(item => {
@@ -117,19 +117,12 @@ export default {
             this.baskets.splice(this.baskets.indexOf(item), 1)
         }
     },
-    created() {
-        axios.get('/menu.json')
-            .then(res => {
-                Object.keys(res.data).forEach(item => {
-                    const data = res.data[item]
-                    data.id = item
-                    data.options && data.options.forEach(option => {
-                        option.price = option.price ? option.price * 1 : 0
-                    })
-                })
-                this.menuItems = res.data
-            })
-    }
+    // created() {
+    //     this.http.get('/menu.json')
+    //         .then(res => {
+    //             this.$store.commit('setMenuItems', res.data)
+    //         })
+    // }
 }
 </script>
 
