@@ -60,10 +60,12 @@ export default {
     // }
     computed: {
         currentUser() {
-            return this.$store.state.currentUser
+            return this.$store.state.users.currentUser
+            // return this.$store.state.currentUser
         },
         isLogin() {
-            return this.$store.state.isLogin
+            return this.$store.state.users.isLogin
+            // return this.$store.state.isLogin
         }
     }
 }
